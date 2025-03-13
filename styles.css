@@ -4,6 +4,10 @@ body {
     text-align: center;
 }
 
+h1 {
+    color: #2c3e50;
+}
+
 #library {
     display: flex;
     flex-wrap: wrap;
@@ -24,4 +28,33 @@ body {
     font-size: 18px;
     margin: 10px 0;
 }
+
+.borrow, .return {
+    padding: 8px 12px;
+    margin-top: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.borrow {
+    background-color: #27ae60;
+    color: white;
+}
+
+.borrow:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
+.return {
+    background-color: #c0392b;
+    color: white;
+}
+
+.return:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+}
+
 
