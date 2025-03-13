@@ -5,12 +5,17 @@ let books = [
     { id: 3, title: "To Kill a Mockingbird", author: "Harper Lee", year: 1960, isAvailable: true }
 ];
 
+// Load books from localStorage if available
+if (localStorage.getItem("books")) {
+    books = JSON.parse(localStorage.getItem("books"));
+}
+
 // Function to render books on the page
 function displayBooks() {
-    const libraryDiv = document.getElementById("library");
+    const libraryDiv = document.querySelector("#library");
     libraryDiv.innerHTML = ""; // Clear existing content
 
-    books.forEach(book => {
+    books.forEach((book) => {
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
 
@@ -25,11 +30,14 @@ function displayBooks() {
 
         libraryDiv.appendChild(bookDiv);
     });
+
+    // Save book data to localStorage
+    localStorage.setItem("books", JSON.stringify(books));
 }
 
 // Function to borrow a book
 function borrowBook(bookId) {
-    let book = books.find(b => b.id === bookId);
+    let book = books.find((b) => b.id === bookId);
     if (book && book.isAvailable) {
         book.isAvailable = false;
         alert(`You have borrowed "${book.title}".`);
@@ -39,7 +47,7 @@ function borrowBook(bookId) {
 
 // Function to return a book
 function returnBook(bookId) {
-    let book = books.find(b => b.id === bookId);
+    let book = books.find((b) => b.id === bookId);
     if (book && !book.isAvailable) {
         book.isAvailable = true;
         alert(`You have returned "${book.title}".`);
@@ -49,4 +57,3 @@ function returnBook(bookId) {
 
 // Initial display of books
 displayBooks();
-
